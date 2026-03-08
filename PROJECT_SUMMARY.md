@@ -158,9 +158,30 @@ estimated_time = base_time × ease_factor × temp_factor
 
 ```bash
 npm run dev    # Start development server
-npm run build  # Build for production
+npm run build  # Build for production (local, uses base path '/')
 npm run preview # Preview production build
+npm run build:gh # Build for GitHub Pages (uses base path '/material-reco/')
 ```
+
+---
+
+## 🌐 Deployment
+
+### GitHub Pages Setup
+
+The project is configured for deployment to GitHub Pages at `https://niccoreyes.github.io/material-reco/`.
+
+**Configuration:**
+- `vite.config.js` uses conditional base path:
+  - Local: `/` (default)
+  - GitHub Pages: `/material-reco/` (when `GITHUB_PAGES=true`)
+- GitHub Actions workflow (`.github/workflows/static.yml`) runs `npm run build:gh`
+
+**Deploy Steps:**
+1. Push to `main` branch (triggers auto-deploy via GitHub Actions)
+2. Or manually run: `npm run build:gh` and push the `dist/` folder
+
+**Important:** Always use `npm run build:gh` before pushing for deployment to ensure correct asset paths.
 
 ---
 
